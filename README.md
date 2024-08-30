@@ -129,3 +129,89 @@ worker node
 ![image](https://github.com/user-attachments/assets/13aa2cec-da0d-432b-9446-6bfd61866626)
 
 
+TASK 2: COnfiguration of Grafana-server
+
+# Installing Grafana on Ubuntu
+
+This guide provides instructions to install Grafana on an Ubuntu machine using the APT repository.
+
+## Prerequisites
+
+Before installing Grafana, ensure that you have `apt-transport-https`, `software-properties-common`, and `wget` installed on your system.
+
+## Installation Steps
+
+### 1. Install Prerequisite Packages
+
+Run the following command to install the required packages:
+
+```bash
+sudo apt-get install -y apt-transport-https software-properties-common wget
+```
+### 2. Import the GPG Key
+Create a directory for the GPG key and import it:
+
+```
+sudo mkdir -p /etc/apt/keyrings/
+wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg > /dev/null
+```
+
+### 3. Add the Grafana Repository
+For Stable Releases
+Add the stable release repository:
+
+```echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+```
+
+For Beta Releases (Optional)
+If you want to use beta releases, add the beta release repository:
+
+`echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com beta main" | sudo tee -a /etc/apt/sources.list.d/grafana.list`
+
+## 4. Update the Package List
+Update the list of available packages:
+
+`sudo apt-get update`
+
+## 5. Install Grafana
+To Install Grafana OSS
+Run the following command to install the latest Open Source Software (OSS) release:
+`sudo apt-get install grafana-enterprise`
+
+To Install Grafana Enterprise
+Run the following command to install the latest Enterprise release:
+`sudo apt-get install grafana-enterprise`
+
+## 6. Start and Enable Grafana Service
+After installation, start and enable the Grafana service:
+
+```
+sudo systemctl start grafana-server
+sudo systemctl enable grafana-server
+```
+
+## 7. Access Grafana
+Grafana runs on port 3000 by default. You can access it in your web browser at:
+
+`http://<your-server-ip>:3000`
+
+The default login credentials are:
+```
+Username: admin
+Password: admin
+```
+You will be prompted to change the password upon first login.
+
+# Now, After this you will see the Grafana Dashboard
+
+![image](https://github.com/user-attachments/assets/0c35ba05-6a64-4daa-97d4-d422848348b0)
+![image](https://github.com/user-attachments/assets/14491e31-d151-4189-b40c-ffb8e2d086ed)
+![image](https://github.com/user-attachments/assets/b33f5e90-2f14-4b0a-bb63-28e9c2561649)
+![image](https://github.com/user-attachments/assets/641c21e5-7989-436b-8496-84035d757258)
+![image](https://github.com/user-attachments/assets/03cc98fa-87e4-45fb-b0b8-258517bbc52f)
+
+
+
+
+
+
