@@ -75,7 +75,41 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 sudo systemctl enable --now kubelet
 ```
-###
+## Initialize the Control Node
+
+On the control node:
+
+Initialize the Kubernetes Cluster:
+
+`sudo kubeadm init --pod-network-cidr=192.168.0.0/16`
+
+Set Up kubectl:
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+Install Calico Network Add-on:
+`kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml`
+
+Create Join Command:
+`kubeadm token create --print-join-command`
+
+Copy the output of this command. It will look something like this:
+`sudo kubeadm join <control-plane-ip>:<port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>`
+
+## 3. Join the Worker Node
+On the worker node, use the join command obtained from the control node:
+
+Run the Join Command:
+`sudo kubeadm join <control-plane-ip>:<port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>`
+
+## 4. Verify the Cluster
+On the control node:
+
+Check Node Status:
+`kubectl get nodes`
 
 # Output:
 
