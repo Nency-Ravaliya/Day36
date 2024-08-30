@@ -111,6 +111,22 @@ On the control node:
 Check Node Status:
 `kubectl get nodes`
 
+## Troubleshoot:
+```
+sudo apt-get update
+sudo apt-get upgrade qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils
+qemu -version
+sudo apt-mark unhold kubeadm kubelet kubectl
+sudo apt-get update
+sudo apt-get upgrade kubeadm kubelet kubectl
+kubeadm version
+kubelet --version
+kubectl version --client
+
+sudo kubeadm init --pod-network-cidr 192.168.0.0/16
+```
+
+
 # Output:
 
 ![image](https://github.com/user-attachments/assets/3ea31872-76f8-42a0-9763-274e5b4854f0)
