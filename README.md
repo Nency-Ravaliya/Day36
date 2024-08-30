@@ -129,7 +129,7 @@ worker node
 ![image](https://github.com/user-attachments/assets/13aa2cec-da0d-432b-9446-6bfd61866626)
 
 
-TASK 2: COnfiguration of Grafana-server
+# TASK 2: COnfiguration of Grafana-server
 
 # Installing Grafana on Ubuntu
 
